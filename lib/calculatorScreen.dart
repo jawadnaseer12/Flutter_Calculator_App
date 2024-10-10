@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:my_calculator/calculatorProvider.dart';
+import 'package:my_calculator/main.dart';
 import 'package:provider/provider.dart';
 
 class Calculatorscreen extends StatefulWidget {
@@ -33,9 +36,27 @@ class _CalculatorscreenState extends State<Calculatorscreen> {
               ),
             ),
           ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 30),
+            child: Row(
+              children: [
+                Row(
+                  children: [
+                    Icon(FontAwesomeIcons.history, color: Colors.white, size: 20.sp),
+                    SizedBox(width: 10.w),
+                    Icon(Icons.square_foot, color: Colors.white, size: 25.sp),
+                  ],
+                ),
+                const Spacer(),
+                GestureDetector(
+                    onTap: () {},
+                    child: Icon(Icons.backspace , color: Colors.white, size: 20.sp)),
+              ],
+            ),
+          ),
           Container(
-            height: 40,
-            width: 330,
+            height: 15.h,
+            width: 330.w,
             decoration: const BoxDecoration(
               border: Border(
                   bottom: BorderSide(color: Colors.grey)
@@ -46,22 +67,22 @@ class _CalculatorscreenState extends State<Calculatorscreen> {
             crossAxisCount: 4,
             shrinkWrap: true,
             children: [
-              buildButton(context, '7'),
-              buildButton(context, '8'),
-              buildButton(context, '9'),
-              buildButton(context, '/'),
-              buildButton(context, '4'),
-              buildButton(context, '5'),
-              buildButton(context, '6'),
-              buildButton(context, '*'),
-              buildButton(context, '1'),
-              buildButton(context, '2'),
-              buildButton(context, '3'),
-              buildButton(context, '-'),
-              buildButton(context, 'C'),
-              buildButton(context, '0'),
-              buildButton(context, '='),
-              buildButton(context, '+'),
+              buildButton(context, '7', Colors.white),
+              buildButton(context, '8', Colors.white),
+              buildButton(context, '9', Colors.white),
+              buildButton(context, '/', Colors.lightGreenAccent),
+              buildButton(context, '4', Colors.white),
+              buildButton(context, '5', Colors.white),
+              buildButton(context, '6', Colors.white),
+              buildButton(context, 'x', Colors.lightGreenAccent),
+              buildButton(context, '1', Colors.white),
+              buildButton(context, '2', Colors.white),
+              buildButton(context, '3', Colors.white),
+              buildButton(context, '-', Colors.lightGreenAccent),
+              buildButton(context, 'C', Colors.blue),
+              buildButton(context, '0', Colors.white),
+              buildButton(context, '=', Colors.lightGreenAccent),
+              buildButton(context, '+', Colors.lightGreenAccent),
             ],
           )
         ],
@@ -69,7 +90,7 @@ class _CalculatorscreenState extends State<Calculatorscreen> {
     );
   }
 
-  Widget buildButton(BuildContext context, String label) {
+  Widget buildButton(BuildContext context, String label, Color fontColor) {
 
     var calculator = Provider.of<CalculatorProvider>(context, listen: false);
 
@@ -94,8 +115,8 @@ class _CalculatorscreenState extends State<Calculatorscreen> {
         child: Center(
           child: Text(
             label,
-            style: const TextStyle(
-              color: Colors.white,
+            style: TextStyle(
+              color: fontColor,
               fontSize: 25,
             ),
           ),
